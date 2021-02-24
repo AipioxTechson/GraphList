@@ -8,7 +8,7 @@ async function main() {
     resolvers: [TodoItemResolver,TodoResolver]
   })
   const server = new ApolloServer({ schema })
-  await server.listen(4000)
+  await server.listen(process.env.PORT || 4000)
   console.log("Server has started!")
 }
 
