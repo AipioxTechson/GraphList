@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "es2018", // or newer if your node.js version supports this
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "strictPropertyInitialization": false
+  }
+}
