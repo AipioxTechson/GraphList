@@ -1,5 +1,5 @@
-import { ObjectType, Field, ID, Root } from 'type-graphql';
-import { TodoItem } from './TodoItem';
+import { ObjectType, Field, ID, Root, InputType } from 'type-graphql';
+import { TodoItem, TodoItemInput } from './TodoItem';
 
 @ObjectType()
 export class TodoList {
@@ -25,3 +25,22 @@ export class TodoList {
   }
 
 }
+
+@InputType()
+export class TodoListInput {
+  @Field(type => ID)
+  id: string;
+
+  @Field({ nullable: true })
+  title?: string;
+
+  @Field()
+  description: string;
+
+  @Field({nullable: true})
+  dateCreated?: Date;
+
+  @Field(type => [TodoItemInput])
+  TodoItems: TodoItemInput[];
+
+} 

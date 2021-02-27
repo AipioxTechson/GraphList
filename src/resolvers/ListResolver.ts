@@ -1,5 +1,5 @@
-import { Resolver, Query, Arg, FieldResolver, Root, Ctx, Info } from "type-graphql";
-import { TodoList, TodoItem } from '../models';
+import { Resolver, Query, Arg, FieldResolver, Root, Ctx, Info, Mutation } from "type-graphql";
+import { TodoList, TodoItem, TodoListInput, TodoItemInput } from '../models';
 
 const TodoItem1: TodoItem = {
   id: "11",
@@ -38,6 +38,11 @@ export class TodoResolver {
     return TodoLists.filter(todoList => (id && todoList.id === id) || (description && todoList.description === description) || (title && todoList.title === title))
   }
 
+  @Mutation()
+  createTodoList(@Arg("data") newData: TodoListInput): TodoList {
+    return TodoLists[0];
+  };
+
 /**  @FieldResolver()
   TodoItems(@Root() todoList: TodoList){
     console.log(todoList);
@@ -49,6 +54,11 @@ export class TodoResolver {
 
 @Resolver(of => TodoItem)
 export class TodoItemResolver { 
+
+  @Mutation()
+  createTodoItem(@Arg("data") newData: TodoItemInput): TodoItem {
+    return TodoItem2;
+  };
 
   @FieldResolver()
   dynamicValue(@Root() todoItem: TodoItem, @Ctx() context: any, @Info() info: any) { 
