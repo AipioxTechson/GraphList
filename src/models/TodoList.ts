@@ -28,8 +28,8 @@ export class TodoList {
 
 @InputType()
 export class TodoListInput {
-  @Field(type => ID)
-  id: string;
+  @Field(type => ID, {nullable: true})
+  id?: string;
 
   @Field({ nullable: true })
   title?: string;
@@ -40,7 +40,16 @@ export class TodoListInput {
   @Field({nullable: true})
   dateCreated?: Date;
 
-  @Field(type => [TodoItemInput])
-  TodoItems: TodoItemInput[];
+  @Field(type => [TodoItemInput], {nullable: true})
+  TodoItems?: TodoItemInput[];
 
 } 
+
+@ObjectType()
+export class SuccessMessage {
+  @Field(type => ID)
+  status: string;
+
+  @Field(type => TodoList, {nullable: true})
+  data?: TodoList;
+}
